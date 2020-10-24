@@ -192,3 +192,8 @@ footer {
     color: white;
     text-align: right;
   }
+
+#msg {
+    text-align: center;
+    font-weight: 900;
+}

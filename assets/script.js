@@ -7,9 +7,13 @@ $(document).ready(function() {
     var timeRemaining = 77;
     var finalScore = 0;
     var currentQuestionNum = 1;
+    var msgDiv = document.querySelector("#msg");
     var timeLeft = $("#timeLeft");
     var questionOneCard = $("#question1");
-    var playerName = $("#playerName").val();
+    var playerName = "";
+    var highScoreDataset = {
+        'scores': []
+    };
 
 
     // The array of questions for our quiz game.
@@ -36,19 +40,40 @@ $(document).ready(function() {
         gameOver();
     })
 
-    $("#saveScoreBtn").click(function() {
-        console.log(playerName + " / " + finalScore);
-        localStorage.setItem(playerName,finalScore);
+    $("#saveScoreBtn").click(function(event) {
+        event.preventDefault();
+
+        var playerNameField = document.querySelector("#playerName").value;
+
+        if (playerNameField === "") {
+            displayMessage("error", "Player Name cannot be blank");
+        } else {
+            playerName = playerNameField;
+            displayMessage("success", "Score saved successfully");
+
+            console.log(playerName + " / " + finalScore);
+            highScoreDataset.scores.push({ 'playerName': playerName, 'score': finalScore });
+            localStorage.setItem('highScoreDataset', JSON.stringify(highScoreDataset));
+            // localStorage.setItem(playerName, finalScore);
+        }
     });
 
     $("#viewHighScores").click(function() {
         $("#highScores").fadeToggle(900);
         $(this).text($(this).text() == 'Hide High Scores' ? 'Show High Scores' : 'Hide High Scores');
+        $("#viewHighScoresFooter").text($("#viewHighScoresFooter").text() == 'Hide High Scores' ? 'Show High Scores' : 'Hide High Scores');
+        fetchHighScores();
+    });
+
+    $("#viewHighScoresFooter").click(function() {
+        $("#highScores").fadeToggle(900);
+        $(this).text($(this).text() == 'Hide High Scores' ? 'Show High Scores' : 'Hide High Scores');
+        $("#viewHighScores").text($("#viewHighScores").text() == 'Hide High Scores' ? 'Show High Scores' : 'Hide High Scores');
         fetchHighScores();
     });
 
     $("#clearHighScores").click(function () {
-        localStorage.clear();
+        window.localStorage.clear();
     });
     
     $(".answerButton").click(function() {
@@ -62,6 +87,11 @@ $(document).ready(function() {
     });
 
     // Main functions
+    function displayMessage(type, message) {
+        msgDiv.textContent = message;
+        msgDiv.setAttribute("class", type);
+    }
+
     function wrongAnswer() {
         timeRemaining -= 10;
         $("#resultText").text("Wrong!");
@@ -115,15 +145,19 @@ $(document).ready(function() {
         $("#finalScore").attr("value", finalScore);
         
         // Save the score to local storage
-        localStorage.setItem('Last Score',finalScore);
+        // localStorage.setItem('Last Score',finalScore);
     }
     
 
     function fetchHighScores() {
-        for(let i=0; i<localStorage.length; i++) {
-            let key = localStorage.key(i);
-            alert(`${key}: ${localStorage.getItem(key)}`);
-        }
+        var restoredScores = JSON.parse(localStorage.getItem('highScoreDataset'));
+        console.log(restoredScores);
+        $("#scores").empty();
+        $.each(restoredScores.scores, function(i, value) {
+            $("#scores").append(restoredScores.scores + "<br>"); // + localStorage.value(i)
+        });
+        
+        $("#scores").append(restoredScores);
     }
 
 });
