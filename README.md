@@ -1,6 +1,6 @@
 # SMU-Homework-04-Code-Quiz
 
-Create a password generator using JavaScript. I made a few tweaks to the initial frame provided, mainly in my use of a dedicated settings button. This allows for better organization of the data gathering portion, as well as the ability to much more quickly generate passwords allowing the user to choose one he/she likes. I also changed the colors. :)
+Build a timed coding quiz with multiple-choice questions. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. This week’s coursework will teach you all the skills you need to succeed in this assignment.
 
 ## Description
 

@@ -15,7 +15,6 @@ $(document).ready(function() {
         'scores': []
     };
 
-
     // The array of questions for our quiz game.
     var questions = [
         { q: "Commonly used data types DO NOT include:", o1: "strings", o2: "alerts", o3: "booleans", o4: "numbers", a: "o2" },
@@ -74,6 +73,7 @@ $(document).ready(function() {
 
     $("#clearHighScores").click(function () {
         window.localStorage.clear();
+        $("#scores").empty();
     });
     
     $(".answerButton").click(function() {
@@ -148,13 +148,12 @@ $(document).ready(function() {
         // localStorage.setItem('Last Score',finalScore);
     }
     
-
     function fetchHighScores() {
         var restoredScores = JSON.parse(localStorage.getItem('highScoreDataset'));
         console.log(restoredScores);
         $("#scores").empty();
         $.each(restoredScores.scores, function(i, value) {
-            $("#scores").append(restoredScores.scores + "<br>"); // + localStorage.value(i)
+            $("#scores").append(restoredScores.scores[i].playerName + ": " + restoredScores.scores[i].score + "<br>");
         });
         
         $("#scores").append(restoredScores);
