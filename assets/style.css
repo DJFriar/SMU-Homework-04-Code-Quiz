@@ -46,6 +46,13 @@ body {
     display: none;
 }
 
+#highScores {
+    display: none;
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
 #gameOver {
     display: none;
 }
@@ -60,10 +67,18 @@ body {
 
 #resultsBox {
     display: none;
+    text-align: center;
+
+}
+
+#resultText {
+    font-size: 1.7em;
+    font-weight: 900;
 }
 
 #scoreBox {
     display: none; /* toggle between none and block */
+    text-align: right;
 }
 
 #finalScore {
@@ -71,16 +86,15 @@ body {
 }
 
 #timeLeft {
-    font-size: 1.5em;
-    margin-left: 6px;
+    font-size: 1.25em;
+    margin-left: 8px;
     font-weight: 700;
 }
 
 header {
-  text-align: left;
-  padding: 20px;
-  padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+    margin-bottom: 25px;
+    margin-left: 12px;
+    margin-right: 12px;
 }
 
 .card {
@@ -127,6 +141,16 @@ header {
   cursor: pointer;
 }
 
+#viewHighScores #restartQuizFooter {
+    font-size: 16px;
+    line-height: 16px;
+}
+
+#restartQuizFooter {
+    float: left;
+    display: none;
+}
+
 button[disabled] {
   cursor: default;
   background: #c0c7cf;
@@ -153,3 +177,12 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: right;
+  }

@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+    console.log("Doc Ready");
+    var lastScore = localStorage.getItem('Score');
+    console.log(lastScore);
     // Required Variables
     var timeRemaining = 77;
     var finalScore = 0;
@@ -26,11 +29,21 @@ $(document).ready(function() {
         // Hide the intro and show the game screen
         $("#gameIntro").fadeOut(1000);
         $("#scoreBox").delay(1000).fadeIn(1000);
+        $("#restartQuizFooter").delay(1000).fadeIn(1000);
         questionOneCard.delay(1000).fadeIn(1000);
         // start the timer
         gameTimer();
     });
 
+    $("#viewHighScores").click(function() {
+        $("#highScores").fadeToggle(900);
+        $(this).text($(this).text() == 'Hide High Scores' ? 'Show High Scores' : 'Hide High Scores');
+    });
+
+    $("#clearHighScore").click(function () {
+        localStorage.clear();
+    });
+    
     $(".answerButton").click(function() {
         if ($(this).hasClass("correctAnswer")) {
             console.log("Correct answer selected.");
@@ -41,20 +54,19 @@ $(document).ready(function() {
         }
     });
 
+    // Main functions
     function wrongAnswer() {
-        var resultText = $("#resultText");
-
         timeRemaining -= 10;
-        resultText.text("Wrong!");
+        $("#resultText").text("Wrong!");
+        $("#resultsCard").css("background-color","lightcoral");
         $("#resultsBox").fadeIn(1200).fadeOut(1200);
         animationHandler();
     }
 
     function rightAnswer() {
-        var resultText = $("#resultText");
-
         timeRemaining += 3;
-        resultText.text("Correct!");
+        $("#resultText").text("Correct!");
+        $("#resultsCard").css("background-color","lightgreen");
         $("#resultsBox").fadeIn(1200).fadeOut(1200);
         animationHandler();
     }
@@ -91,6 +103,8 @@ $(document).ready(function() {
         $("#scoreBox").hide();
         $("#gameOver").fadeIn(1000);
         $("#finalScore").text(finalScore);
+        
+        localStorage.setItem('Score',finalScore);
       }
 
 });
