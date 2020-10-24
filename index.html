@@ -29,8 +29,8 @@
                     <h4>How To Play</h4>
                 </div>
                 <div class="card-body">
-                    <p>Try to answer the following questions withing the alloted time. Incorrect answers will cost you 10 seconds. 
-                        Your score is your remaining time, so fast and accurate is best.</p>
+                    <p>Try to answer the following questions withing the alloted time. Correct answers will give you a 3 second bonus, but incorrect answers will cost you 10 seconds. 
+                        Your score is your remaining time, so be quick, but accurate.</p>
                 </div>
                 <div class="card-button">
                     <button id="startQuiz" class="btn">Start Quiz</button>
@@ -133,7 +133,10 @@
                 <h4 id="resultText">Game Over!</h4>
             </div>
             <div class="card-body" id="highScores">
-                High Score Section
+                <p>Your final score was:<span id="finalScore"></span></p>
+            </div>
+            <div class="card-button">
+                <a class="text-reset" href="index.html"><button id="restartQuiz" class="btn">Restart Quiz</button></a>
             </div>
         </div>
     </div>

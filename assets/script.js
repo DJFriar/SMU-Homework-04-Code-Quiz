@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
     // Required Variables
-    var timeRemaining = 8;
+    var timeRemaining = 77;
+    var finalScore = 0;
     var currentQuestionNum = 1;
     var timeLeft = $("#timeLeft");
     var questionOneCard = $("#question1");
@@ -57,6 +58,7 @@ $(document).ready(function() {
     function wrongAnswer() {
         var resultText = $("#resultText");
 
+        timeRemaining -= 10;
         resultText.text("Wrong!");
         $("#resultsBox").fadeIn(1200).fadeOut(1200);
         animationHandler();
@@ -65,24 +67,31 @@ $(document).ready(function() {
     function rightAnswer() {
         var resultText = $("#resultText");
 
+        timeRemaining += 3;
         resultText.text("Correct!");
         $("#resultsBox").fadeIn(1200).fadeOut(1200);
         animationHandler();
     }
 
     function animationHandler() {
-        currentQuestionNum++;
-        $("#question" + (currentQuestionNum - 1)).fadeOut(1000);
-        $("#question" + currentQuestionNum).delay(1000).fadeIn(1000);
+        if (currentQuestionNum >= 5) {
+            finalScore = timeRemaining;
+            gameOver();
+        } else {
+            currentQuestionNum++;
+            console.log(currentQuestionNum);
+            $("#question" + (currentQuestionNum - 1)).fadeOut(1000);
+            $("#question" + currentQuestionNum).delay(1000).fadeIn(1000);
+        }
     }
 
     function gameTimer() {      
         var timeInterval = setInterval(function() {
+          // Subtracting two seconds due to an issue with the time out action triggers two seconds early
           timeLeft.text(timeRemaining - 2);
           timeRemaining--;
       
-          if (timeRemaining === 0) {
-            timeLeft.text("0").css("color", "red");
+          if (timeRemaining <= 0) {
             clearInterval(timeInterval);
             gameOver();
           }
@@ -93,7 +102,9 @@ $(document).ready(function() {
       function gameOver() {
         $("#question" + currentQuestionNum).stop().hide();
         $("#resultsBox").stop().hide();
+        $("#scoreBox").hide();
         $("#gameOver").fadeIn(1000);
+        $("#finalScore").text(finalScore);
       }
 
 });

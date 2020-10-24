@@ -66,11 +66,14 @@ body {
     display: none; /* toggle between none and block */
 }
 
+#finalScore {
+    margin-left: 12px;
+}
+
 #timeLeft {
     font-size: 1.5em;
-    margin-left: 12px;
+    margin-left: 6px;
     font-weight: 700;
-    /* text-align: center;  */
 }
 
 header {
