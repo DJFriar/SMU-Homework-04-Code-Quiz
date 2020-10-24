@@ -1,10 +1,10 @@
 // The array of questions for our quiz game.
 var questions = [
-    { q: "The sky is blue.", o1: "opt 1", o2: "opt 1", o3: "opt 1", o4: "opt 1", a: "t" },
-    { q: "The sky is blue.", o1: "opt 1", o2: "opt 1", o3: "opt 1", o4: "opt 1", a: "t" },
-    { q: "The sky is blue.", o1: "opt 1", o2: "opt 1", o3: "opt 1", o4: "opt 1", a: "t" },
-    { q: "The sky is blue.", o1: "opt 1", o2: "opt 1", o3: "opt 1", o4: "opt 1", a: "t" },
-    { q: "The sky is blue.", o1: "opt 1", o2: "opt 1", o3: "opt 1", o4: "opt 1", a: "t" },
+    { q: "Commonly used data types DO NOT include:", o1: "strings", o2: "alerts", o3: "booleans", o4: "numbers", a: "o2" },
+    { q: "Arrays in JavaScript can be used to store:", o1: "numbers and strings", o2: "other arrays", o3: "booleans", o4: "all of the above", a: "o4" },
+    { q: "String values must be enclosed within _______ when being assigned to variables?", o1: "commas", o2: "curly brackets", o3: "quotes", o4: "parentheses", a: "o3" },
+    { q: "The condition in an id/else statement is enclosed within _______. ", o1: "parentheses", o2: "curly brackets", o3: "square brackets", o4: "quotes", a: "o1" },
+    { q: "A very useful tool for printing content to the debugger is:", o1: "JavaScript", o2: "terminal/bash", o3: "for loops", o4: "console.log", a: "o4" },
   ];
 
 // Event Listeners
