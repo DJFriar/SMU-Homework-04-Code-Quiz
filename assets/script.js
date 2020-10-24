@@ -1,16 +1,15 @@
 $(document).ready(function() {
 
     // Required Variables
-    var timeLeft = 75;
+    var timeRemaining = 8;
     var currentQuestionNum = 1;
-    var priorQuestionNum = 0;
-    var questionCard = $("#question");
+    var timeLeft = $("#timeLeft");
     var questionOneCard = $("#question1");
-    var questionTwoCard = $("#question2");
-    var questionThreeCard = $("#question3");
-    var questionFourCard = $("#question4");
-    var questionFiveCard = $("#question5");
-    var correctAnswer = "option2";
+    var q1Answer = "option2";
+    var q2Answer = "option4";
+    var q3Answer = "option3";
+    var q4Answer = "option1";
+    var q5Answer = "option4";
 
     // The array of questions for our quiz game.
     var questions = [
@@ -27,6 +26,8 @@ $(document).ready(function() {
         $("#gameIntro").fadeOut(1000);
         $("#scoreBox").delay(1000).fadeIn(1000);
         questionOneCard.delay(1000).fadeIn(1000);
+        // start the timer
+        gameTimer();
     });
 
     $(".answerButton").click(function() {
@@ -70,18 +71,29 @@ $(document).ready(function() {
     }
 
     function animationHandler() {
-        console.log(priorQuestionNum + " / " + currentQuestionNum);
-
         currentQuestionNum++;
         $("#question" + (currentQuestionNum - 1)).fadeOut(1000);
         $("#question" + currentQuestionNum).delay(1000).fadeIn(1000);
-
     }
 
-    function gameTimer() {
-        if (timeLeft > 0) {
+    function gameTimer() {      
+        var timeInterval = setInterval(function() {
+          timeLeft.text(timeRemaining - 2);
+          timeRemaining--;
+      
+          if (timeRemaining === 0) {
+            timeLeft.text("0").css("color", "red");
+            clearInterval(timeInterval);
+            gameOver();
+          }
+      
+        }, 1000);
+      }
 
-        }
-    }
+      function gameOver() {
+        $("#question" + currentQuestionNum).stop().hide();
+        $("#resultsBox").stop().hide();
+        $("#gameOver").fadeIn(1000);
+      }
 
 });

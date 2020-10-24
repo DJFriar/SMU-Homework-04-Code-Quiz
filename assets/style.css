@@ -27,27 +27,31 @@ body {
 }
 
 #question1 {
-    display: none; /* toggle between none and flex */
+    display: none;
 }
 
 #question2 {
-    display: none; /* toggle between none and flex */
+    display: none;
 }
 
 #question3 {
-    display: none; /* toggle between none and flex */
+    display: none;
 }
 
 #question4 {
-    display: none; /* toggle between none and flex */
+    display: none;
 }
 
 #question5 {
-    display: none; /* toggle between none and flex */
+    display: none;
+}
+
+#gameOver {
+    display: none;
 }
 
 #gameData {
-     display: none; /* toggle between none and flex */
+     display: none;
 }
 
 #gameData[style*='block'] {
