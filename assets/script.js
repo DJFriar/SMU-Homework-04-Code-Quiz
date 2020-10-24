@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     console.log("Doc Ready");
-    var lastScore = localStorage.getItem('Score');
+    var lastScore = localStorage.getItem('Last Score');
     console.log(lastScore);
     // Required Variables
     var timeRemaining = 77;
@@ -9,11 +9,8 @@ $(document).ready(function() {
     var currentQuestionNum = 1;
     var timeLeft = $("#timeLeft");
     var questionOneCard = $("#question1");
-    var q1Answer = "option2";
-    var q2Answer = "option4";
-    var q3Answer = "option3";
-    var q4Answer = "option1";
-    var q5Answer = "option4";
+    var playerName = $("#playerName").val();
+
 
     // The array of questions for our quiz game.
     var questions = [
@@ -35,12 +32,22 @@ $(document).ready(function() {
         gameTimer();
     });
 
+    $("#scoreBox").click(function() {
+        gameOver();
+    })
+
+    $("#saveScoreBtn").click(function() {
+        console.log(playerName + " / " + finalScore);
+        localStorage.setItem(playerName,finalScore);
+    });
+
     $("#viewHighScores").click(function() {
         $("#highScores").fadeToggle(900);
         $(this).text($(this).text() == 'Hide High Scores' ? 'Show High Scores' : 'Hide High Scores');
+        fetchHighScores();
     });
 
-    $("#clearHighScore").click(function () {
+    $("#clearHighScores").click(function () {
         localStorage.clear();
     });
     
@@ -85,26 +92,38 @@ $(document).ready(function() {
 
     function gameTimer() {      
         var timeInterval = setInterval(function() {
-          // Subtracting two seconds due to an issue with the time out action triggers two seconds early
-          timeLeft.text(timeRemaining - 2);
-          timeRemaining--;
-      
-          if (timeRemaining <= 0) {
-            clearInterval(timeInterval);
-            gameOver();
-          }
-      
+            // Subtracting two seconds due to an issue with the time out action triggers two seconds early
+            timeLeft.text(timeRemaining - 2);
+            timeRemaining--;
+        
+            // Stop the timer
+            if (timeRemaining <= 0) {
+                clearInterval(timeInterval);
+                gameOver();
+            }
         }, 1000);
-      }
+    }
 
-      function gameOver() {
+    function gameOver() {
+        // Hide all other windows
         $("#question" + currentQuestionNum).stop().hide();
         $("#resultsBox").stop().hide();
         $("#scoreBox").hide();
+
+        // Display the final score
         $("#gameOver").fadeIn(1000);
-        $("#finalScore").text(finalScore);
+        $("#finalScore").attr("value", finalScore);
         
-        localStorage.setItem('Score',finalScore);
-      }
+        // Save the score to local storage
+        localStorage.setItem('Last Score',finalScore);
+    }
+    
+
+    function fetchHighScores() {
+        for(let i=0; i<localStorage.length; i++) {
+            let key = localStorage.key(i);
+            alert(`${key}: ${localStorage.getItem(key)}`);
+        }
+    }
 
 });

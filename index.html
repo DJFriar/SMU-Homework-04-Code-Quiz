@@ -27,7 +27,7 @@
                     <h4>How To Play</h4>
                 </div>
                 <div class="card-body">
-                    <p>Try to answer the following questions withing the alloted time. Correct answers will give you a 3 second bonus, but incorrect answers will cost you 10 seconds. 
+                    <p>Try to answer the following questions withing the allotted time. Correct answers will give you a 3 second bonus, but incorrect answers will subtract 10 seconds. 
                         Your score is your remaining time, so be quick, but accurate.</p>
                 </div>
                 <div class="card-button">
@@ -131,7 +131,24 @@
                 <h4 id="resultText">Game Over!</h4>
             </div>
             <div class="card-body">
-                <p>Your final score was:<span id="finalScore"></span></p>
+                <!-- <p>Your final score was:<span id="finalScore"></span></p> -->
+                <form>
+                    <div class="form-group row">
+                        <label for="finalScore" class="col-sm-3 col-form-label">Your score was:</label>
+                        <div class="col-sm-9">
+                          <input type="text" readonly class="form-control-plaintext" id="finalScore" value="">
+                        </div>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group mb-2">
+                      <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Player Initials">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                      <input class="form-control" id="playerName" placeholder="ABC">
+                    </div>
+                    <button type="button" class="btn saveButton mb-2" id="saveScoreBtn">Save</button>
+                  </form>
             </div>
             <div class="card-button">
                 <a class="text-reset" href="index.html"><button id="restartQuiz" class="btn">Restart Quiz</button></a>
@@ -148,13 +165,13 @@
                 <p>High Scores Go Here</p>
             </div>
             <div class="card-button">
-                <a class="text-reset" href="#"><button id="clearHighScores" class="btn">Clear Scores</button></a>
+                <button id="clearHighScores" class="btn">Clear Scores</button>
             </div>
         </div>
     </div>
 
     <footer>
-        <a class="text-reset" href="index.html"><button id="restartQuizFooter" class="btn">Restart Quiz</button></a>
+        <a class="text-reset" href="index.html"></a><button id="restartQuizFooter" class="btn">Restart Quiz</button></a>
         <button id="viewHighScores" class="btn">Show High Scores</button>
     </footer>
 
