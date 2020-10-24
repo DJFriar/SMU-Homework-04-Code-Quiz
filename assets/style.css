@@ -26,6 +26,26 @@ body {
     margin-bottom: 20px;
 }
 
+#question1 {
+    display: none; /* toggle between none and flex */
+}
+
+#question2 {
+    display: none; /* toggle between none and flex */
+}
+
+#question3 {
+    display: none; /* toggle between none and flex */
+}
+
+#question4 {
+    display: none; /* toggle between none and flex */
+}
+
+#question5 {
+    display: none; /* toggle between none and flex */
+}
+
 #gameData {
      display: none; /* toggle between none and flex */
 }
@@ -34,18 +54,23 @@ body {
     display: flex !important;
 }
 
+#resultsBox {
+    display: none;
+}
+
 #scoreBox {
-    display: block; /* toggle between none and block */
+    display: none; /* toggle between none and block */
 }
 
 #timeLeft {
-    font-size: 50pt;
+    font-size: 1.5em;
+    margin-left: 12px;
     font-weight: 700;
-    text-align: center; 
+    /* text-align: center;  */
 }
 
 header {
-  text-align: center;
+  text-align: left;
   padding: 20px;
   padding-top: 0px;
   color: hsl(206, 17%, 28%);

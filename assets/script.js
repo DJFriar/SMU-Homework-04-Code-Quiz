@@ -2,7 +2,14 @@ $(document).ready(function() {
 
     // Required Variables
     var timeLeft = 75;
-    var questionNumber = 1;
+    var currentQuestionNum = 1;
+    var priorQuestionNum = 0;
+    var questionCard = $("#question");
+    var questionOneCard = $("#question1");
+    var questionTwoCard = $("#question2");
+    var questionThreeCard = $("#question3");
+    var questionFourCard = $("#question4");
+    var questionFiveCard = $("#question5");
     var correctAnswer = "option2";
 
     // The array of questions for our quiz game.
@@ -17,65 +24,58 @@ $(document).ready(function() {
     // Event Listeners
     $("#startQuiz").click(function() {
         // Hide the intro and show the game screen
-        $("#gameIntro").hide(1000);
-        $("#gameData").show(1000, gameShow);
-
+        $("#gameIntro").fadeOut(1000);
+        $("#scoreBox").delay(1000).fadeIn(1000);
+        questionOneCard.delay(1000).fadeIn(1000);
     });
 
     $(".answerButton").click(function() {
-        console.log(this.id);
-        //answer value
-        //logic test pass fail
-        //logic result == score modify if needed
-        //increment question var and update dom
-        switch(this.id) {
-            case '#option1':
-                wrongAnswer;
+        switch (this.id) {
+            case 'option1':
+                console.log("option 1");
+                wrongAnswer();
                 break;
-            case '#option2':
-                rightAnswer;
+            case 'option2':
+                console.log("option 2");
+                rightAnswer();
+                break;
+            case 'option3':
+                console.log("option 3");
+                wrongAnswer();
+                break;
+            case 'option4':
+                console.log("option 4");
+                wrongAnswer();
                 break;
             default:
+                console.log("default case");
                 break;
         }
-    });
-
-    function gameShow() {
-        var questionZone = $("#questionZone");
-        var questionGoesHere = $("#questionGoesHere");
-        var answerButton = $("<button class='answerButton'>");        
-        
-        questionGoesHere.text(questions[0].q);
-
-        answerButton.text(questions[0].o1);
-        answerButton.attr("id","option1");
-        answerButton.clone().appendTo(questionZone);
-        answerButton.text(questions[0].o2);
-        answerButton.attr("id","option2");
-        answerButton.clone().appendTo(questionZone);
-        answerButton.text(questions[0].o3);
-        answerButton.attr("id","option3");
-        answerButton.clone().appendTo(questionZone);
-        answerButton.text(questions[0].o4);
-        answerButton.attr("id","option4");
-        answerButton.clone().appendTo(questionZone);
-
-    }
-
-    function rightAnswer() {
-        var resultsBox = $("#resultsBox");
-        var resultText = $("#resultText");
-
-        resultText.text("Correct!");
-        resultsBox.append(resultText);
-    }
+    })
 
     function wrongAnswer() {
-        var resultsBox = $("#resultsBox");
         var resultText = $("#resultText");
 
         resultText.text("Wrong!");
-        resultsBox.append(resultText);
+        $("#resultsBox").fadeIn(1200).fadeOut(1200);
+        animationHandler();
+    }
+
+    function rightAnswer() {
+        var resultText = $("#resultText");
+
+        resultText.text("Correct!");
+        $("#resultsBox").fadeIn(1200).fadeOut(1200);
+        animationHandler();
+    }
+
+    function animationHandler() {
+        console.log(priorQuestionNum + " / " + currentQuestionNum);
+
+        currentQuestionNum++;
+        $("#question" + (currentQuestionNum - 1)).fadeOut(1000);
+        $("#question" + currentQuestionNum).delay(1000).fadeIn(1000);
+
     }
 
     function gameTimer() {
