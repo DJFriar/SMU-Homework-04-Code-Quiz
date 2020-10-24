@@ -16,6 +16,11 @@ body {
   background-color: #f9fbfd;
 }
 
+.answerButton {
+    background-color: #ff6700;
+    display: block;
+}
+
 #gameIntro {
     display: flex; /* toggle between none and flex */
     margin-bottom: 20px;
