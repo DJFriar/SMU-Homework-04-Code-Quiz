@@ -32,28 +32,14 @@ $(document).ready(function() {
     });
 
     $(".answerButton").click(function() {
-        switch (this.id) {
-            case 'option1':
-                console.log("option 1");
-                wrongAnswer();
-                break;
-            case 'option2':
-                console.log("option 2");
-                rightAnswer();
-                break;
-            case 'option3':
-                console.log("option 3");
-                wrongAnswer();
-                break;
-            case 'option4':
-                console.log("option 4");
-                wrongAnswer();
-                break;
-            default:
-                console.log("default case");
-                break;
+        if ($(this).hasClass("correctAnswer")) {
+            console.log("Correct answer selected.");
+            rightAnswer();
+        } else {
+            console.log("Incorrect answer.");
+            wrongAnswer();
         }
-    })
+    });
 
     function wrongAnswer() {
         var resultText = $("#resultText");
